@@ -2,7 +2,7 @@
 // Open Source Software; you can modify and/or share it under the terms of
 // the WPILib BSD license file in the root directory of this project.
 
-package com.PARTS.frc.Utils.dataHolders;
+package PARTSlib2023.PARTS.frc.Utils.dataHolders;
 
 /** Add your docs here. */
 public class PIDValues {
