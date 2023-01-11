@@ -14,6 +14,7 @@ import PARTSlib2023.PARTS.frc.Utils.Interfaces.EncoderValueInterface;
 
 /** Add your docs here. */
 // deprecated
+@Deprecated
 public class LinearDistance{
     EncoderValueInterface<?>[] groupOne, groupTwo;
     double[] initialGroupOne, initialGroupTwo ;
@@ -21,7 +22,6 @@ public class LinearDistance{
     double gearRatio;
 
     double[] groupOneTotals, groupTwoTotals;
-    @Deprecated
     LinearDistance(EncoderValueInterface<?>[] groupOne, EncoderValueInterface<?>[] groupTwo, double wheelCircumference, double gearRatio){
         this.groupOne = groupOne;
         this.groupTwo = groupTwo;
