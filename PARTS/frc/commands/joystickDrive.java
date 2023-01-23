@@ -22,15 +22,15 @@ public class joystickDrive extends CommandBase {
   /**
    * 
    * @param bDriveTrain the drivetrain object
-   * @param leftStick a function that gives the value of the joystick axis desired to control forward back rotation
-   * @param rightStick a function that gives the value of the joystick axis that controlls rotation
+   * @param beanieController the driver controller
+
    */
-  public joystickDrive(beanieDriveTrain bDriveTrain, Callable<Double> leftStick, Callable<Double> rightStick) {
+  public joystickDrive(beanieDriveTrain bDriveTrain, beanieController controller) {
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(bDriveTrain);
     this.bDriveTrain = bDriveTrain;
-    this.leftStick = leftStick;
-    this.rightStick = rightStick;
+    this.controller = controller;
+
 
   }
 
@@ -43,7 +43,7 @@ public class joystickDrive extends CommandBase {
   public void execute() {
 
     try {
-      bDriveTrain.moveArcade(rightStick.call(), leftStick.call());
+      bDriveTrain.moveArcade(controller.getLeftYAxis(), controller.getRightXAxis());
     } catch (Exception e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
