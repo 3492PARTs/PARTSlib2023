@@ -77,6 +77,10 @@ public abstract class beanieDriveTrain extends SubsystemBase {
         mDrive.tankDrive(0, 0);
     }
 
+    public abstract void autonomousSetup();
+
+    public abstract void teleopSetup();
+
 
 
 }
