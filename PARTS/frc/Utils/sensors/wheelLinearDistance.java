@@ -30,4 +30,9 @@ public abstract class wheelLinearDistance {
     public double getDistanceMeters(){
         return Units.inchesToMeters((encoder.getDistanceRaw() * wheelCircumference) / gearRatio);
     }
+
+    public double getVelocity(){
+        return Units.inchesToMeters((encoder.getRate() * wheelCircumference) / gearRatio);
+
+    }
 }

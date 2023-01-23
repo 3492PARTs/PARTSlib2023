@@ -9,4 +9,6 @@ public interface EncoderValueInterface<T> {
 
 public double getDistanceRaw();
 
+public double getRate();
+
 }

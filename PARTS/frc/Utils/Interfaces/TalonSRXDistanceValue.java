@@ -21,5 +21,14 @@ public class TalonSRXDistanceValue implements EncoderValueInterface<TalonSRX>{
         return talonSRX.getSelectedSensorPosition();
     
     }
+
+    @Override
+    /**
+     * @return rotations per second
+     */
+    public double getRate() {
+        // TODO Auto-generated method stub
+        return (talonSRX.getSelectedSensorVelocity()  * 60) / (4096);
+    }
     
 }
