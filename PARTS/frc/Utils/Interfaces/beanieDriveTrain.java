@@ -45,7 +45,7 @@ public abstract class beanieDriveTrain extends SubsystemBase {
         
     }
     
-    public abstract beanieDriveTrain getInstance();
+
 
     
     public void moveArcade(double X, double rotation){
