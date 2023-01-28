@@ -39,7 +39,7 @@ public abstract class beanieDriveTrain extends SubsystemBase {
     }
 
     public void moveVolts(double leftVoltage, double rightVoltage){
-        leftControllerGroup.setVoltage(leftVoltage);
+        leftControllerGroup.setVoltage(-leftVoltage);
         rightControllerGroup.setVoltage(rightVoltage);
         mDrive.feed();
         
@@ -58,11 +58,11 @@ public abstract class beanieDriveTrain extends SubsystemBase {
     
 
     public  double getAngle(){
-        return gyro.getAngle();
+        return -gyro.getAngle();
     }
 
     public double getTurningRate(){
-        return gyro.getRate();
+        return -gyro.getRate();
     }
 
     public Rotation2d getRotation(){
