@@ -12,6 +12,7 @@ import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.interfaces.Gyro;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 /** Add your docs here. */
@@ -24,6 +25,8 @@ public abstract class beanieDriveTrain extends SubsystemBase {
 
     public beanieDriveTrain(AHRS gyro, MotorControllerGroup leftControllerGroup, MotorControllerGroup rightMotorControllerGroup){
         this.gyro = gyro;
+        Shuffleboard.getTab("Debug").add(gyro);
+        
         this.leftControllerGroup = leftControllerGroup;
         this.rightControllerGroup = rightMotorControllerGroup;
         mDrive = new DifferentialDrive(leftControllerGroup, rightControllerGroup);
@@ -46,6 +49,10 @@ public abstract class beanieDriveTrain extends SubsystemBase {
     }
     
 
+    public void resetGyro(){
+        gyro.reset();
+    }
+
 
     
     public void moveArcade(double X, double rotation){
@@ -58,15 +65,15 @@ public abstract class beanieDriveTrain extends SubsystemBase {
     
 
     public  double getAngle(){
-        return -gyro.getAngle();
+        return gyro.getAngle();
     }
 
     public double getTurningRate(){
-        return -gyro.getRate();
+        return gyro.getRate();
     }
 
     public Rotation2d getRotation(){
-        return new Rotation2d(Math.toRadians(getAngle()));
+        return gyro.getRotation2d().times(-1).rotateBy(new Rotation2d(Math.toRadians(180)));
     }
 
     public abstract double leftDistance();
