@@ -49,9 +49,6 @@ public abstract class beanieDriveTrain extends SubsystemBase {
     }
     
 
-    public void resetGyro(){
-        gyro.reset();
-    }
 
 
     
