@@ -65,12 +65,16 @@ public abstract class beanieDriveTrain extends SubsystemBase {
         return gyro.getAngle();
     }
 
+    public double getYaw(){
+        return gyro.getYaw();
+    }
+
     public double getTurningRate(){
         return gyro.getRate();
     }
 
     public Rotation2d getRotation(){
-        return gyro.getRotation2d().times(-1).rotateBy(new Rotation2d(Math.toRadians(180)));
+        return gyro.getRotation2d().times(-1);
     }
 
     public abstract double leftDistance();
