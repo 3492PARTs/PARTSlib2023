@@ -69,6 +69,10 @@ public abstract class beanieDriveTrain extends SubsystemBase {
         return gyro.getYaw();
     }
 
+    public double getRoll(){
+        return -gyro.getRoll();
+    }
+
     public double getTurningRate(){
         return gyro.getRate();
     }
