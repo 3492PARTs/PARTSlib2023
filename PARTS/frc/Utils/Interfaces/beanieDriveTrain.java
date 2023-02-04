@@ -85,7 +85,7 @@ public abstract class beanieDriveTrain extends SubsystemBase {
     }
 
     public Rotation2d getRotation(){
-        return gyro.getRotation2d().times(-1);
+        return gyro.getRotation2d().times(-1).rotateBy(new Rotation2d(180));
     }
 
     public abstract double leftDistance();
