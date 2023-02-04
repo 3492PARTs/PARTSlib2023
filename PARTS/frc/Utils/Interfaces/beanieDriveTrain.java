@@ -41,11 +41,18 @@ public abstract class beanieDriveTrain extends SubsystemBase {
         mDrive.tankDrive(left, right, false);
     }
 
+    public double getVelocityGyro(){
+        return gyro.getVelocityZ();
+    }
+
     public void moveVolts(double leftVoltage, double rightVoltage){
         leftControllerGroup.setVoltage(-leftVoltage);
         rightControllerGroup.setVoltage(rightVoltage);
         mDrive.feed();
         
+    }
+    public double getPitch(){
+        return -gyro.getPitch();
     }
     
 
