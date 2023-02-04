@@ -36,11 +36,15 @@ public class joystickDrive extends CommandBase {
 
   // Called when the command is initially scheduled.
     @Override
-    public void initialize() {}
+    public void initialize() {
+      System.out.println("initialized");
+    }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+
+    System.out.println("here");
 
     try {
       bDriveTrain.moveArcade(controller.getLeftYAxis(), controller.getRightXAxis());
