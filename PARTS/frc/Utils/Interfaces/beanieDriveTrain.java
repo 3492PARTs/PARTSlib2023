@@ -29,6 +29,7 @@ public abstract class beanieDriveTrain extends SubsystemBase {
         
         this.leftControllerGroup = leftControllerGroup;
         this.rightControllerGroup = rightMotorControllerGroup;
+        leftControllerGroup.setInverted(true);
         mDrive = new DifferentialDrive(leftControllerGroup, rightControllerGroup);
     }
 
