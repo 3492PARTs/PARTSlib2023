@@ -47,7 +47,7 @@ public abstract class beanieDriveTrain extends SubsystemBase {
     }
 
     public void moveVolts(double leftVoltage, double rightVoltage){
-        leftControllerGroup.setVoltage(-leftVoltage);
+        leftControllerGroup.setVoltage(-leftVoltage); // maybe need to denegate.
         rightControllerGroup.setVoltage(rightVoltage);
         mDrive.feed();
         
