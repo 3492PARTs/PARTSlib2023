@@ -30,7 +30,7 @@ public abstract class beanieDriveTrain extends SubsystemBase {
 
         this.leftControllerGroup = leftControllerGroup;
         this.rightControllerGroup = rightMotorControllerGroup;
-        leftControllerGroup.setInverted(true);
+        leftControllerGroup.setInverted(false);
         mDrive = new DifferentialDrive(leftControllerGroup, rightControllerGroup);
         this.gyroZrotation = new Rotation2d(0);
     }
@@ -54,6 +54,9 @@ public abstract class beanieDriveTrain extends SubsystemBase {
      */
     public void move(double left, double right) {
         mDrive.tankDrive(left, right, false);
+    }
+    public void moveCurvature(double speed, double radiusofrotation){
+        mDrive.curvatureDrive(speed, radiusofrotation, true);
     }
 
     public double getVelocityGyro() {

@@ -4,6 +4,7 @@
 
 package PARTSlib2023.PARTS.frc.Utils.Controls;
 
+import PARTSlib2023.PARTS.frc.commands.joystickDrive;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.GenericHID.RumbleType;
 import edu.wpi.first.wpilibj2.command.button.JoystickButton;
@@ -23,6 +24,7 @@ public class beanieController {
 
     private JoystickButton rightBumper;
 
+    private dpadButton dpadDown;
     private JoystickButton leftBumper;
 
     private dpadButton dpadUp;
@@ -42,10 +44,14 @@ public class beanieController {
         start = new JoystickButton(controller, 8);
 
         dpadUp = new dpadButton(controller, 0);
+        dpadDown = new dpadButton(controller, 180);
         
     }
     public XboxController getController(){
         return controller;
+    }
+    public dpadButton getdpadDown(){
+        return dpadDown;
     }
 
     public JoystickButton getA() {
@@ -102,6 +108,10 @@ public class beanieController {
 
     public triggerButton getRightTriggerButton(double threshold){
         return new triggerButton(controller, 3, threshold);
+    }
+
+    public triggerButton getLeftTriggerButton(double threshold){
+        return new triggerButton(controller, 2, threshold);
     }
 
     public void Rumbling(Rumbler rumbler){
