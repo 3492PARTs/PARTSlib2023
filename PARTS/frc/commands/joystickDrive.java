@@ -8,6 +8,7 @@ import java.util.concurrent.Callable;
 
 import PARTSlib2023.PARTS.frc.Utils.Controls.beanieController;
 import PARTSlib2023.PARTS.frc.Utils.Interfaces.beanieDriveTrain;
+import edu.wpi.first.math.filter.SlewRateLimiter;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 
 
@@ -17,6 +18,7 @@ public class joystickDrive extends CommandBase {
     beanieController controller;
     Callable<Double> leftStick;
     Callable<Double> rightStick;
+    SlewRateLimiter speedLimiter = new SlewRateLimiter(.4);
   /** Creates a new joystickDrive. */
 
   /**
@@ -47,7 +49,7 @@ public class joystickDrive extends CommandBase {
     System.out.println("here");
 
     try {
-      bDriveTrain.moveArcade(controller.getLeftYAxis(), controller.getRightXAxis());
+      bDriveTrain.moveArcade(speedLimiter.calculate(controller.getLeftYAxis()), controller.getRightXAxis());
     } catch (Exception e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
