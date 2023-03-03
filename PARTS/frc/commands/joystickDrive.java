@@ -18,7 +18,7 @@ public class joystickDrive extends CommandBase {
     beanieController controller;
     Callable<Double> leftStick;
     Callable<Double> rightStick;
-    SlewRateLimiter speedLimiter = new SlewRateLimiter(.4);
+    SlewRateLimiter speedLimiter = new SlewRateLimiter(.5, -1 , 0);
   /** Creates a new joystickDrive. */
 
   /**
@@ -46,10 +46,14 @@ public class joystickDrive extends CommandBase {
   @Override
   public void execute() {
 
-    System.out.println("here");
 
     try {
-      bDriveTrain.moveArcade(speedLimiter.calculate(controller.getLeftYAxis()), controller.getRightXAxis());
+      if(controller.getLeftYAxis() <= 0){
+      bDriveTrain.moveArcade(-speedLimiter.calculate(controller.getLeftYAxis()), -controller.getRightXAxis());
+      }
+      else if(controller.getLeftYAxis() <= 0){
+        bDriveTrain.moveArcade(-speedLimiter.calculate(controller.getLeftYAxis()), controller.getRightXAxis());
+      }
     } catch (Exception e) {
       // TODO Auto-generated catch block
       e.printStackTrace();
