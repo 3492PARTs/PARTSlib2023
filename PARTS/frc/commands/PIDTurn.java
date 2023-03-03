@@ -25,12 +25,14 @@ public class PIDTurn extends CommandBase {
    * @param driveTrain a drivetrain implementing the proper interface
    * @param turningValues tested pid values for turning you can likely use the ones from the limelight
    */
-  public PIDTurn(beanieDriveTrain driveTrain, PIDValues turningValues) {
+  public PIDTurn(beanieDriveTrain driveTrain, PIDValues turningValues, double setPoint) {
     // Use addRequirements() here to declare subsystem dependencies.
 
     this.driveTrain = driveTrain;
     this.pidValues = turningValues.getPIDValues();
     PIDController = new PIDController(pidValues[0], pidValues[1], pidValues[2]);
+    PIDController.setTolerance(1);
+    this.setPoint = setPoint;
     addRequirements(driveTrain);
   }
 
@@ -40,13 +42,14 @@ public class PIDTurn extends CommandBase {
     initAngle = driveTrain.getAngle();
     PIDController.setSetpoint(setPoint);
     
+    
 
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    double speed = PIDController.calculate(driveTrain.getAngle());
+    double speed = PIDController.calculate(driveTrain.getAngle() - initAngle);
 
     speed = MathUtil.clamp(speed, -1, 1);
 
@@ -65,6 +68,6 @@ public class PIDTurn extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return PIDController.atSetpoint() && (driveTrain.getTurningRate() < .5);
+    return PIDController.atSetpoint() && (driveTrain.getTurningRate() < .005);
   }
 }

@@ -4,6 +4,8 @@
 
 package PARTSlib2023.PARTS.frc.Utils.Interfaces;
 
+import java.util.function.DoubleSupplier;
+
 import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.math.estimator.DifferentialDrivePoseEstimator;
@@ -27,6 +29,7 @@ public abstract class beanieDriveTrain extends SubsystemBase {
             MotorControllerGroup rightMotorControllerGroup) {
         this.gyro = gyro;
         Shuffleboard.getTab("Debug").add(gyro);
+        Shuffleboard.getTab("Debug").addNumber("Angle", getAngSupplier());
 
         this.leftControllerGroup = leftControllerGroup;
         this.rightControllerGroup = rightMotorControllerGroup;
@@ -39,6 +42,8 @@ public abstract class beanieDriveTrain extends SubsystemBase {
             MotorControllerGroup rightMotorControllerGroup) {
         this.gyro = gyro;
         Shuffleboard.getTab("Debug").add(gyro);
+        Shuffleboard.getTab("Debug").addNumber("Angle", getAngSupplier());
+
 
         this.leftControllerGroup = leftControllerGroup;
         this.rightControllerGroup = rightMotorControllerGroup;
@@ -71,7 +76,7 @@ public abstract class beanieDriveTrain extends SubsystemBase {
     }
 
     public double getPitch() {
-        return -gyro.getPitch();
+        return gyro.getPitch();
     }
 
     public void moveArcade(double X, double rotation) {
@@ -86,6 +91,11 @@ public abstract class beanieDriveTrain extends SubsystemBase {
 
     public double getYaw() {
         return -gyro.getYaw();
+    }
+
+    public DoubleSupplier getAngSupplier(){
+        DoubleSupplier s = () -> getRotation().getRotations() * 360;
+        return s;
     }
 
     public double getRoll() {

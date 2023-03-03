@@ -6,7 +6,7 @@ package PARTSlib2023.PARTS.frc.Utils.dataHolders;
 
 /** Add your docs here. */
 public class PIDValues {
-    double[] PIDValues;
+    double[] PIDValues = new double[3];
     /**
      * 
      * @param kp the tuned proportional gain (tune first )
