@@ -30,7 +30,7 @@ public abstract class beanieDriveTrain extends SubsystemBase {
 
         this.leftControllerGroup = leftControllerGroup;
         this.rightControllerGroup = rightMotorControllerGroup;
-        leftControllerGroup.setInverted(false);
+        rightControllerGroup.setInverted(true);
         mDrive = new DifferentialDrive(leftControllerGroup, rightControllerGroup);
         this.gyroZrotation = new Rotation2d(0);
     }
@@ -64,7 +64,7 @@ public abstract class beanieDriveTrain extends SubsystemBase {
     }
 
     public void moveVolts(double leftVoltage, double rightVoltage) {
-        leftControllerGroup.setVoltage(-leftVoltage); // TODO: maybe need to denegate.
+        leftControllerGroup.setVoltage(leftVoltage); // TODO: maybe need to denegate.
         rightControllerGroup.setVoltage(rightVoltage);
         mDrive.feed();
 
@@ -85,7 +85,7 @@ public abstract class beanieDriveTrain extends SubsystemBase {
     }
 
     public double getYaw() {
-        return gyro.getYaw();
+        return -gyro.getYaw();
     }
 
     public double getRoll() {
