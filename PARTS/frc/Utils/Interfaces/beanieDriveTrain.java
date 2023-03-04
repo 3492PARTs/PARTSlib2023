@@ -75,6 +75,10 @@ public abstract class beanieDriveTrain extends SubsystemBase {
 
     }
 
+    public double getVelocityGyroXY(){
+        return Math.sqrt(Math.pow(gyro.getVelocityX(),2) + Math.pow(gyro.getVelocityY(),2));
+    }
+
     public double getPitch() {
         return gyro.getPitch();
     }

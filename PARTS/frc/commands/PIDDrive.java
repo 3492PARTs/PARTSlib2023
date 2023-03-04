@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 public class PIDDrive extends CommandBase {
   /** Creates a new PIDDrive. */
-  double initAngle;
+  double init;
   double setPoint;
   beanieDriveTrain driveTrain;
   double[] pidValues;
@@ -37,7 +37,7 @@ public class PIDDrive extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    initAngle = driveTrain.getAngle();
+    init = driveTrain.getAngle();
     PIDController.setSetpoint(setPoint);
     
 
@@ -63,6 +63,6 @@ public class PIDDrive extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return PIDController.atSetpoint(); // todo: add velocity check
+    return PIDController.atSetpoint() && driveTrain.getVelocityGyroXY() < .1; // todo: add velocity check
   }
 }
