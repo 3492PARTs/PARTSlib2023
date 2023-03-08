@@ -48,12 +48,10 @@ public class joystickDrive extends CommandBase {
 
 
     try {
-      if(controller.getLeftYAxis() <= 0){
-      bDriveTrain.moveArcade(-speedLimiter.calculate(controller.getLeftYAxis()), -controller.getRightXAxis());
-      }
-      else if(controller.getLeftYAxis() > 0){
-        bDriveTrain.moveArcade(-speedLimiter.calculate(controller.getLeftYAxis()), controller.getRightXAxis());
-      }
+
+      bDriveTrain.moveCurvature(-speedLimiter.calculate(controller.getLeftYAxis()), -controller.getRightXAxis());
+      
+
     } catch (Exception e) {
       // TODO Auto-generated catch block
       e.printStackTrace();

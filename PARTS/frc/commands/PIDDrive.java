@@ -48,9 +48,9 @@ public class PIDDrive extends CommandBase {
   public void execute() {
     double speed = PIDController.calculate(driveTrain.getAngle());
 
-    speed = MathUtil.clamp(speed, -1, 1);
+    speed = MathUtil.clamp(speed, -12, 12);
 
-    driveTrain.move(speed, speed);
+    driveTrain.moveVolts(speed, speed);
 
   }
 
