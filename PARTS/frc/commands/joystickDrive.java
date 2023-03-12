@@ -19,6 +19,8 @@ public class joystickDrive extends CommandBase {
     Callable<Double> leftStick;
     Callable<Double> rightStick;
     SlewRateLimiter speedLimiter = new SlewRateLimiter(.5, -1 , 0);
+    SlewRateLimiter angularSpeedLimiter = new SlewRateLimiter(.25);
+
   /** Creates a new joystickDrive. */
 
   /**
@@ -49,7 +51,7 @@ public class joystickDrive extends CommandBase {
 
     try {
 
-      bDriveTrain.moveCurvature(-speedLimiter.calculate(controller.getLeftYAxis()), -controller.getRightXAxis());
+      bDriveTrain.moveCurvature(-speedLimiter.calculate(controller.getLeftYAxis()), -.5*(controller.getRightXAxis()));
       
 
     } catch (Exception e) {

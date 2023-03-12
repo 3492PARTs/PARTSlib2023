@@ -36,6 +36,7 @@ public abstract class beanieDriveTrain extends SubsystemBase {
         this.rightControllerGroup = rightMotorControllerGroup;
         rightControllerGroup.setInverted(true);
         mDrive = new DifferentialDrive(leftControllerGroup, rightControllerGroup);
+        mDrive.setSafetyEnabled(false);
         this.gyroZrotation = new Rotation2d(0);
     }
 
@@ -75,7 +76,7 @@ public abstract class beanieDriveTrain extends SubsystemBase {
 
     public void moveVolts(double leftVoltage, double rightVoltage) {
         leftControllerGroup.setVoltage(leftVoltage); // TODO: maybe need to denegate.
-        rightControllerGroup.setVoltage(-rightVoltage);
+        rightControllerGroup.setVoltage(rightVoltage);
         mDrive.feed();
 
     }

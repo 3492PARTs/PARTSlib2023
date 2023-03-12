@@ -31,7 +31,7 @@ public class PIDTurn extends CommandBase {
     this.driveTrain = driveTrain;
     this.pidValues = turningValues.getPIDValues();
     PIDController = new PIDController(pidValues[0], pidValues[1], pidValues[2]);
-    PIDController.setTolerance(1);
+    PIDController.setTolerance(.5);
     this.setPoint = setPoint;
     addRequirements(driveTrain);
   }
