@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class joystickDrive extends CommandBase {
     beanieDriveTrain bDriveTrain;
     beanieController controller;
+    double speedFactor = .5;
     Callable<Double> leftStick;
     Callable<Double> rightStick;
     SlewRateLimiter speedLimiter = new SlewRateLimiter(.5, -1 , 0);
@@ -38,6 +39,13 @@ public class joystickDrive extends CommandBase {
 
   }
 
+  public joystickDrive(beanieDriveTrain bDriveTrain, beanieController controller, double sf) {
+    addRequirements(bDriveTrain);
+    this.bDriveTrain = bDriveTrain;
+    this.controller = controller;
+    this.speedFactor = sf;
+  }
+
   // Called when the command is initially scheduled.
     @Override
     public void initialize() {
@@ -50,8 +58,12 @@ public class joystickDrive extends CommandBase {
 
 
     try {
-
-      bDriveTrain.moveCurvature(-speedLimiter.calculate(controller.getLeftYAxis()), -.45*(controller.getRightXAxis()));
+      if(controller.getLeftBumper().getAsBoolean() == true) {
+        speedFactor = 0.5;
+      } else {
+        speedFactor = 1;
+      }
+      bDriveTrain.moveCurvature(-speedLimiter.calculate(controller.getLeftYAxis() * speedFactor), -.5*(controller.getRightXAxis()));
       
 
     } catch (Exception e) {
