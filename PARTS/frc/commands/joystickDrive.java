@@ -51,7 +51,7 @@ public class joystickDrive extends CommandBase {
 
     try {
 
-      bDriveTrain.moveCurvature(-speedLimiter.calculate(controller.getLeftYAxis()), -.5*(controller.getRightXAxis()));
+      bDriveTrain.moveCurvature(-speedLimiter.calculate(controller.getLeftYAxis()), -.45*(controller.getRightXAxis()));
       
 
     } catch (Exception e) {

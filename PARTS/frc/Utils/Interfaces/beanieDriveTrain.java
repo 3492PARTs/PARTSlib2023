@@ -30,6 +30,8 @@ public abstract class beanieDriveTrain extends SubsystemBase {
         this.gyro = gyro;
         Shuffleboard.getTab("Debug").add(gyro);
         Shuffleboard.getTab("Debug").addNumber("Angle", getAngSupplier());
+        Shuffleboard.getTab("Debug").addNumber("pitch", getPitchSupplier());
+        Shuffleboard.getTab("Debug").addNumber("yaw", getYawSupplier());
 
 
         this.leftControllerGroup = leftControllerGroup;
@@ -105,6 +107,16 @@ public abstract class beanieDriveTrain extends SubsystemBase {
 
     public DoubleSupplier getAngSupplier(){
         DoubleSupplier s = () -> getRotation().getRotations() * 360;
+        return s;
+    }
+
+    public DoubleSupplier getYawSupplier(){
+        DoubleSupplier s = () -> getYaw();
+        return s;
+    }
+
+    public DoubleSupplier getPitchSupplier(){
+        DoubleSupplier s = () -> getPitch();
         return s;
     }
 
