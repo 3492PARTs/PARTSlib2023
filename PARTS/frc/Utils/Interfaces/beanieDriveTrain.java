@@ -62,10 +62,10 @@ public abstract class beanieDriveTrain extends SubsystemBase {
      * @param right right percent output
      */
     public void move(double left, double right) {
-        mDrive.tankDrive(left, right, false);
+        mDrive.tankDrive(left/2, right/2, false);
     }
     public void moveCurvature(double speed, double radiusofrotation){
-        mDrive.curvatureDrive(speed, radiusofrotation, true);
+        mDrive.curvatureDrive(speed/2, radiusofrotation/2, true);
     }
 
     public double getVelocityGyro() {
@@ -92,7 +92,7 @@ public abstract class beanieDriveTrain extends SubsystemBase {
     }
 
     public void moveArcade(double X, double rotation) {
-        mDrive.arcadeDrive(X, rotation);
+        mDrive.arcadeDrive(X/2, rotation/2);
     }
 
     public abstract Pose2d currentPose();

@@ -18,6 +18,7 @@ public class joystickDrive extends CommandBase {
     beanieController controller;
     Callable<Double> leftStick;
     Callable<Double> rightStick;
+    double speedFactor = 0.5;
     SlewRateLimiter speedLimiter = new SlewRateLimiter(.5, -1 , 0);
     SlewRateLimiter angularSpeedLimiter = new SlewRateLimiter(.25);
 
@@ -51,7 +52,14 @@ public class joystickDrive extends CommandBase {
 
     try {
 
-      bDriveTrain.moveCurvature(-speedLimiter.calculate(controller.getLeftYAxis()), -.45*(controller.getRightXAxis()));
+      if(controller.getLeftBumper().getAsBoolean() || controller.getRightBumper().getAsBoolean()){
+        speedFactor = .35;
+      }
+      else{
+        speedFactor = 1.0;
+      }
+
+      bDriveTrain.moveCurvature(-speedLimiter.calculate(controller.getLeftYAxis()) * speedFactor, -.45*(controller.getRightXAxis()) * speedFactor);
       
 
     } catch (Exception e) {
